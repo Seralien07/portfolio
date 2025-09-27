@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Seralien Bertho</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+/* --- Styles inchangés (animations, dark mode, timeline, etc.) --- */
+/* Animation icône bienvenue */
+@keyframes wave { 0%{transform:rotate(0deg);} 15%{transform:rotate(14deg);} 30%{transform:rotate(-8deg);} 40%{transform:rotate(14deg);} 50%{transform:rotate(-4deg);} 60%{transform:rotate(10deg);} 70%{transform:rotate(0deg);} 100%{transform:rotate(0deg);} }
+.animate-icon { display:inline-block; transform-origin:70% 70%; animation:wave 2s infinite; }
+.scroll-btn { background:linear-gradient(135deg,#0d6efd,#0a58ca); color:white; border:none; border-radius:50px; padding:12px 30px; font-size:1.1rem; transition:transform 0.3s ease, box-shadow 0.3s ease;}
+.scroll-btn:hover { transform:translateY(-3px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.3); text-decoration:none; color:white;}
+.img-hover:hover { transform:scale(1.2) translateY(-5px); box-shadow:0 15px 25px rgba(0,0,0,0.3);}
+body.dark-mode{background:#121212;color:#f1f1f1;} body.dark-mode header{background:#1e1e1e;color:#f1f1f1;} body.dark-mode section{background:#1e1e1e;color:#f1f1f1;} body.dark-mode footer{background:#111;color:#f1f1f1;} body.dark-mode .navbar{background:#222 !important;} body.dark-mode .navbar .nav-link{color:#f1f1f1 !important;} body.dark-mode .skills i{color:#ffc107;}
+@keyframes gradientShift{0%{background:linear-gradient(135deg,#6a11cb 0%,#2575fc 100%);} 50%{background:linear-gradient(135deg,#2575fc 0%,#6a11cb 100%);} 100%{background:linear-gradient(135deg,#6a11cb 0%,#2575fc 100%);}}
+body{font-family:'Arial',sans-serif;scroll-behavior:smooth;transition:background 0.3s,color 0.3s;}
+header{background:linear-gradient(135deg,#0d6efd,#0a58ca);color:white;padding:100px 0;text-align:center;}
+header img{border-radius:50%;border:5px solid white;transition:transform 0.4s ease, box-shadow 0.4s ease;}
+header img:hover{transform:scale(1.2) translateY(-5px); box-shadow:0 15px 25px rgba(0,0,0,0.3);}
+section{padding:60px 0; transition:background 0.3s, color 0.3s;}
+footer{background:#212529;color:white;padding:20px 0;}
+.navbar.scrolled{background-color:#0d6efd !important; transition: background-color 0.3s ease;}
+.dark-toggle{cursor:pointer;font-size:20px;color:white;}
+.skills{display:flex;justify-content:center;flex-wrap:wrap;}
+.skill-item{text-align:center;margin:20px;transition:transform 0.3s ease;}
+.skill-item i{font-size:40px;margin-bottom:10px;color:#0d6efd;}
+.skill-item:hover{transform:scale(1.2);}
+.timeline{position:relative;padding-left:40px;margin:0 auto;}
+.timeline::before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:4px;height:100%;background:#ccc;transition:height 0.6s ease;}
+.timeline-item{position:relative;width:45%;padding:20px 30px;background:white;border-radius:15px;margin:30px 0;text-align:left;box-shadow:0 10px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease, filter 0.3s ease;opacity:0;transform:translateX(50px) translateY(20px);}
+.timeline-item.left{left:0;}
+.timeline-item.right{left:55%;}
+.timeline-item::after{content:'';position:absolute;top:20px;width:20px;height:20px;border-radius:50%;background:#ccc;border:4px solid white;z-index:1;}
+.timeline-item.left::after{right:-10px;}
+.timeline-item.right::after{left:-10px;}
+.timeline-item.visible{opacity:1;transform:translateX(0) translateY(0);}
+.timeline-item:hover{transform:translateY(-15px) rotate(-1deg) scale(1.05);box-shadow:0 25px 35px rgba(0,0,0,0.25);filter:drop-shadow(0 0 10px rgba(13,110,253,0.5));}
+.timeline h5, .timeline p{margin:0.5rem 0;}
+@media(max-width:768px){.timeline::before{left:8px;}.timeline-item, .timeline-item.left, .timeline-item.right{width:90%; left:0 !important;}.timeline-item::after{left:-10px !important;}}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Portfolio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Expériences</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <!-- Lien CV avec téléchargement
+          <a class="nav-link" href="CVSERALIENDEV2025.pdf" download target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i> CV
+          </a> -->
+        </li>
+      </ul>
+      <span class="ms-3 dark-toggle" id="darkToggle" style="background: rgba(0,0,0,0.6); padding: 8px 10px; border-radius: 8px;">
+        <i class="fas fa-moon"></i>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<!-- Accueil -->
+<header id="accueil" class="py-5 position-relative">
+  <div class="container">
+    <!-- Icône CV flottante -->
+    <a href="CVSERALIENDEV2025.pdf" download target="_blank" rel="noopener noreferrer" class="btn btn-light btn-lg rounded-circle position-absolute top-0 end-0 m-3 shadow" title="Télécharger mon CV">
+      <i class="fas fa-download"></i>
+    </a>
+ 
+    <h1 class="text-center mb-4" style="margin-top:5%;">
+      <i class="fas fa-hand-paper-wave animate-icon" style="color:#ffc107; margin-right:10px;"></i>
+      Bienvenue sur mon portfolio
+    </h1>
+
+    <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
+      <div class="me-md-4 mb-3 mb-md-0 text-center">
+        <img src="seralien.jpg" alt="Seralien Bertho" width="250" class="rounded-circle border border-5 border-white img-hover">
+      </div>
+      <div class="text-center text-md-start">
+        <h1>Seralien Bertho</h1>
+        <h3>Développeur Web</h3>
+        <div class="mt-4">
+          <button type="button" class="btn btn-primary btn-lg scroll-btn" data-bs-toggle="modal" data-bs-target="#popupApropos">
+            En savoir plus
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Modal "À propos" -->
+<div class="modal fade" id="popupApropos" tabindex="-1" aria-labelledby="popupAproposLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="popupAproposLabel">À propos de moi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center mb-3 mb-md-0">
+            <img src="seralien.jpg" alt="Seralien Bertho" class="img-fluid rounded-circle border border-3 border-primary">
+          </div>
+          <div class="col-md-8" style="text-align:justify;">
+            <p><strong>Je suis Seralien Bertho</strong>, ingénieur diplômé de l’École Nationale d’Informatique et développeur web passionné.</p>
+            <p>Je crée des applications web performantes et élégantes, et je cherche à approfondir mes compétences dans ce domaine.</p>   
+            <p>Au cours de ma formation, j’ai acquis des connaissances solides en <strong>HTML, CSS, JavaScript, PHP, frameworks web</strong>, ainsi qu’en <strong>gestion de bases de données</strong> et en <strong>ingénierie logicielle</strong>.</p>
+            <p>Mes expériences en freelance m’ont permis de concrétiser plusieurs projets, renforçant mon autonomie, ma rigueur et ma capacité à m’adapter à différents environnements techniques.</p> 
+            <p>Sérieux, motivé et curieux, je prends plaisir à relever de nouveaux défis et à apprendre en continu pour créer des solutions web efficaces et innovantes.</p>
+            <a href="CVSERALIENDEV2025.pdf" download target="_blank" rel="noopener noreferrer" class="btn btn-primary mt-3">
+              Voir / Télécharger mon CV
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sections -->
+<section id="apropos" class="container py-5">
+  <h2 class="text-center mb-4">À propos de moi</h2>
+  <p class="text-center">
+    Je suis <strong>Seralien Bertho</strong>, ingénieur et développeur web full stack freelance, passionné par l’innovation technologique. Avec deux ans d’expérience, je crée des sites et applications web performants, élégants et fonctionnels, en alliant design, performance et expérience utilisateur.
+  </p>
+</section>
+
+  <p class="text-center"><b>Langues :</b> Malagasy – Français – Anglais</p>
+</section>
+
+<section id="competences" class="bg-light">
+  <div class="container text-center">
+    <h2 class="mb-4">Compétences</h2>
+    <div class="skills">
+      <div class="skill-item"><i class="fab fa-html5"></i><p>HTML5</p></div>
+      <div class="skill-item"><i class="fab fa-css3-alt"></i><p>CSS3</p></div>
+      <div class="skill-item"><i class="fab fa-js"></i><p>JavaScript</p></div>
+      <div class="skill-item"><i class="fab fa-php"></i><p>PHP</p></div>
+      <div class="skill-item"><i class="fab fa-bootstrap"></i><p>Bootstrap</p></div>
+      <div class="skill-item"><i class="fab fa-git"></i><p>Git</p></div>
+      <div class="skill-item"><i class="fab fa-github"></i><p>GitHub</p></div>
+      <div class="skill-item"><i class="fas fa-database"></i><p>Base de données</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="bg-light py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Expériences professionnelles</h2>
+    <div class="timeline">
+      <div class="timeline-item left fade-in" data-delay="0"><h5>2021 – 2024 | Freelance</h5><p>Développement web et mobile...</p></div>
+      <div class="timeline-item right fade-in" data-delay="100"><h5>2019 – 2020 | Stage Présidence</h5><p>Application de gestion du campus universitaire.</p></div>
+      <div class="timeline-item left fade-in" data-delay="200"><h5>2017 – 2018 | Stage FID</h5><p>Application web pour la gestion d’un parc informatique.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="bg-light py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Formations</h2>
+    <div class="timeline">
+      <div class="timeline-item left fade-in" data-delay="0"><h5>2019 – 2020</h5>
+        <p> Master II en Informatique Générale à l’Ecole Nationale
+ d’Informatique, Université de Fianarantsoa </p><br>
+ <strong>Diplôme Obtenu :</strong> MASTER II
+</div>
+      <div class="timeline-item right fade-in" data-delay="100"><h5>2017 – 2018</h5><p>Troisièmes années en Informatique Générale à l’Ecole
+ Nationale d’Informatique, Université de Fianarantsoa.</p><br>
+  <strong>Diplôme Obtenu :</strong> LICENCE PROFESSIONNELLE
+
+</div>
+  </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-5 position-relative" style="color:white; overflow:hidden;">
+  <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); z-index:0; animation: gradientShift 15s ease infinite;"></div>
+  <div class="container position-relative" style="z-index:1;">
+    <h2 class="text-center mb-4">Contact</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <h5>Mes coordonnées</h5>
+        <p><i class="fas fa-envelope"></i> seralienseralien@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +261 34 53 45 344</p>
+        <p><i class="fab fa-github"></i> github.com/Seralien07</p>
+      </div>
+      <div class="col-md-6">
+        <form action="send_email.php" method="post" style="background: rgba(255,255,255,0.1); padding:20px; border-radius:15px; backdrop-filter:blur(12px); box-shadow:0 8px 25px rgba(0,0,0,0.2);">
+          <div class="mb-3"><input type="text" name="name" class="form-control" placeholder="Votre nom" required></div>
+          <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Votre email" required></div>
+          <div class="mb-3"><textarea name="message" class="form-control" rows="4" placeholder="Votre message" required></textarea></div>
+          <button type="submit" class="btn btn-light text-primary">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center">
+  <p>&copy; 2024 - Seralien Bertho | Portfolio</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Smooth scroll
+document.querySelectorAll('a.nav-link').forEach(anchor => {
+  anchor.addEventListener('click', function(e){
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Navbar scroll color
+window.addEventListener('scroll', function(){
+  const navbar = document.querySelector('.navbar');
+  navbar.classList.toggle('scrolled', window.scrollY>50);
+});
+
+// Dark mode
+const toggle = document.getElementById('darkToggle');
+toggle.addEventListener('click', function(){
+  document.body.classList.toggle('dark-mode');
+  toggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// Timeline animation
+const timelineItems = document.querySelectorAll('.timeline-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const delay = entry.target.getAttribute('data-delay') || 0;
+      setTimeout(()=>{ entry.target.classList.add('visible'); }, delay);
+    }
+  });
+},{threshold:0.2});
+timelineItems.forEach(item=>observer.observe(item));
+</script>
+</body>
+</html>
